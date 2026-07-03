@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { C } from '../../constants/theme'
 
-export default function SportCard({ sport }) {
+export default function SportCard({ sport, delayIdx = 0 }) {
 
   const [hov, setHov] = useState(false)
   const [btnHov, setBtnHov] = useState(false)
+  const delayClass = `sp-d${(delayIdx % 6) + 1}`
 
   return (
     <div
       data-cur
+      className={`sp-card ${delayClass}`}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
@@ -120,7 +122,8 @@ export default function SportCard({ sport }) {
             letterSpacing: 2,
             padding: '5px 10px',
             fontWeight: 700,
-            boxShadow: '0 0 20px rgba(232,118,42,0.4)'
+            boxShadow: '0 0 20px rgba(232,118,42,0.4)',
+            zIndex: 2,
           }}
         >
           {sport.tag}
@@ -141,7 +144,8 @@ export default function SportCard({ sport }) {
           letterSpacing: 2,
           padding: '5px 10px',
           fontWeight: 700,
-          backdropFilter: 'blur(8px)'
+          backdropFilter: 'blur(8px)',
+          zIndex: 2,
         }}
       >
         {sport.ageLabel}
@@ -179,6 +183,29 @@ export default function SportCard({ sport }) {
             background:'linear-gradient(to top, rgba(8,12,18,.92), rgba(8,12,18,.05))'
           }}
         />
+
+        {/* Sport emoji icon badge — bottom-left over image */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 18,
+            bottom: 14,
+            width: 44,
+            height: 44,
+            borderRadius: '50%',
+            background: 'rgba(8,12,18,0.85)',
+            border: `1px solid ${hov ? C.og : 'rgba(255,255,255,0.12)'}`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 22,
+            backdropFilter: 'blur(6px)',
+            boxShadow: hov ? '0 0 20px rgba(232,118,42,0.35)' : 'none',
+            transition: 'all .4s',
+          }}
+        >
+          {sport.icon}
+        </div>
       </div>
 
       {/* Content wrapper */}

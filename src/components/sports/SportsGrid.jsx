@@ -14,7 +14,7 @@ export default function SportsGrid() {
   const filtered = filter === 'All' ? ALL_SPORTS : ALL_SPORTS.filter(s => CATEGORY_MAP[filter]?.includes(s.name))
 
   return (
-    <section id="grid" style={{ background:C.bg0, padding:'120px 40px', position:'relative', overflow:'hidden' }}>
+    <section id="grid" style={{ background:C.bg0, padding:'160px 40px 120px', position:'relative', overflow:'hidden' }}>
       {/* Ghost number bg */}
       <div className="sp-hide-mob" style={{
         position:'absolute', right:-120, top:'0%',
